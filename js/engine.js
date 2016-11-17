@@ -83,6 +83,7 @@ var Engine = (function(global) {
         if (checkCollisions()) {
           reset();
         } else if (checkWinning()) {
+          incrementScore();
           reset();
         }
     }

@@ -100,6 +100,12 @@ function checkWinning() {
   return false;
 }
 
+function incrementScore() {
+  var element = document.getElementById('score')
+  var score = parseInt(element.innerText);
+  score += 1;
+  element.innerText = score;
+}
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
