@@ -29,9 +29,11 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+/**
+ * Player Class. This models the player. It consists of
+ * methods to handle user input, update the position
+ * of the player, and render the avatar on the grid.
+ */
 var Player = function() {
   this.x = 2*XUNIT;
   this.y = 4.5*YUNIT;
@@ -71,10 +73,12 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
+// Instantiate variables
 var allEnemies = [];
 var numberOfEnemies = 4;
+
+// Function to remove all enemies from the screen and
+// reset their position.
 function resetEnemies() {
   allEnemies = [];
   for (var i = 0; i < numberOfEnemies; i++) {
@@ -82,9 +86,10 @@ function resetEnemies() {
     allEnemies.push(enemy);
   }
 }
-resetEnemies();
+resetEnemies();   //call once when the game starts
 player = new Player();
 
+// Function to check if the player has collided with enemy
 function checkCollisions() {
   for (var i = 0; i < allEnemies.length; i++) {
     if (allEnemies[i].x >= player.x - XUNIT + 30 && allEnemies[i].x < player.x  && allEnemies[i].y === player.y) {
@@ -93,6 +98,7 @@ function checkCollisions() {
   }
 }
 
+// Function to check if the player has won
 function checkWinning() {
   if (player.y < 0) {
     return true;
@@ -100,6 +106,7 @@ function checkWinning() {
   return false;
 }
 
+// Function to increment score on each win
 function incrementScore() {
   var element = document.getElementById('score')
   var score = parseInt(element.innerText);
